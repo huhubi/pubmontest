@@ -15,6 +15,28 @@
     <link rel="stylesheet" type="text/css" href="../static/style.css">
     <script type="text/javascript" src="../static/dashboard.js.Download"></script>
 </head>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const statusIcons = document.querySelectorAll(".col-md-4.px-4 span.fas");
+        const states = [
+            { icon: "fa-check", color: "text-success" },
+            { icon: "fa-exclamation", color: "text-warning" },
+            { icon: "fa-question", color: "" },
+        ];
+        let index = 0;
+
+        function updateStatus() {
+            statusIcons.forEach((icon, i) => {
+                const stateIndex = (Math.floor(i / 5) + index) % states.length;
+                icon.className = `fas ${states[stateIndex].icon} ${states[stateIndex].color}`;
+            });
+            index = (index + 1) % states.length;
+        }
+
+        setInterval(updateStatus,5000); // 1 minute = 60000ms
+    });
+</script>
 <body>
 <div class="container-lg my-5">
     <div class="row">
